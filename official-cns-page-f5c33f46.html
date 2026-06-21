@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>华体会 · 功能与服务概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+            background: #f0f7f9;
+            color: #1a2e33;
+            line-height: 1.7;
+            padding: 0 1rem 2.5rem;
+        }
+
+        .page-wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 2.5rem 2.5rem 1.5rem 1.5rem;
+            box-shadow: 0 12px 32px rgba(20, 70, 70, 0.08);
+            overflow: hidden;
+            padding: 0 1.5rem 2.5rem;
+        }
+
+        /* hero 横幅 */
+        .hero-card {
+            position: relative;
+            background: linear-gradient(115deg, #d4ede8 0%, #b0dad4 40%, #9bcdc5 100%);
+            margin: 1.5rem -1.5rem 0;
+            padding: 3rem 2rem 2.5rem;
+            border-radius: 0 0 3rem 3rem;
+            text-align: center;
+            box-shadow: inset 0 -2px 6px rgba(50, 110, 110, 0.08);
+        }
+
+        .hero-card h1 {
+            font-size: 2.6rem;
+            font-weight: 550;
+            letter-spacing: 1px;
+            color: #10343b;
+            margin-bottom: 0.3rem;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.35);
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: #26565e;
+            background: rgba(255,255,250,0.6);
+            display: inline-block;
+            padding: 0.2rem 1.5rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+            margin: 0.5rem 0 0.2rem;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: #194d51;
+            max-width: 520px;
+            margin: 0.6rem auto 0;
+            background: rgba(245, 255, 250, 0.3);
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+        }
+
+        /* 背景说明卡片 (无网格布局) */
+        .context-block {
+            background: #e9f3f1;
+            border-left: 4px solid #398a84;
+            padding: 1.4rem 1.8rem;
+            border-radius: 20px;
+            margin: 1.8rem 0 1.2rem;
+            box-shadow: 0 2px 8px rgba(30, 80, 80, 0.04);
+        }
+
+        .context-block p {
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .context-block strong {
+            color: #175c59;
+        }
+
+        /* 三段自然介绍 —— 网格卡片 */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.6rem;
+            margin: 2rem 0 2.4rem;
+        }
+
+        .intro-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.6rem 1.3rem 1.2rem;
+            box-shadow: 0 6px 14px rgba(40, 100, 100, 0.06);
+            border: 1px solid #cbe3de;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+
+        .intro-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(30, 100, 90, 0.08);
+        }
+
+        .intro-card h3 {
+            font-size: 1.3rem;
+            font-weight: 530;
+            color: #1c5957;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .intro-card h3 span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #319e92;
+            border-radius: 12px;
+            margin-right: 0.2rem;
+        }
+
+        .intro-card p {
+            font-size: 0.98rem;
+            color: #2a4b4b;
+            opacity: 0.9;
+        }
+
+        .intro-card .badge {
+            display: inline-block;
+            background: #d7eee9;
+            color: #12534d;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            margin-top: 0.6rem;
+        }
+
+        /* 场景速览 — 双栏卡片 */
+        .scene-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2.2rem 0 1.6rem;
+        }
+
+        .scene-item {
+            flex: 1 1 160px;
+            background: #f3faf8;
+            border-radius: 24px;
+            padding: 1.2rem 1rem;
+            border: 1px solid #cfe6e0;
+            box-shadow: 0 1px 4px rgba(30, 90, 80, 0.04);
+        }
+
+        .scene-item h4 {
+            font-weight: 520;
+            color: #1f615b;
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .scene-item p {
+            font-size: 0.93rem;
+            color: #2d5653;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            background: #eaf4f1;
+            padding: 1.6rem 1.8rem;
+            border-radius: 32px;
+            margin: 2rem 0;
+            border: 1px solid #c7dfd8;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.2rem;
+            color: #13534d;
+            margin-bottom: 0.2rem;
+            font-weight: 520;
+        }
+
+        .faq-mini ul {
+            list-style: none;
+            margin-top: 0.3rem;
+        }
+
+        .faq-mini li {
+            padding: 0.3rem 0;
+            border-bottom: 1px dashed #b6d2cb;
+            font-size: 0.98rem;
+        }
+
+        .faq-mini li:last-child {
+            border-bottom: none;
+        }
+
+        .faq-mini li b {
+            color: #0f5b54;
+        }
+
+        /* 页尾提示 */
+        .footer-note {
+            border-top: 1px solid #d1e3de;
+            padding: 2rem 1rem 0.2rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .footer-note p {
+            font-size: 0.98rem;
+            color: #386660;
+            max-width: 550px;
+            margin: 0 auto 0.8rem;
+        }
+
+        .footer-note a {
+            color: #185f5a;
+            font-weight: 550;
+            text-decoration: none;
+            border-bottom: 2px solid #79b7ae;
+            padding-bottom: 2px;
+            transition: border-color 0.2s;
+        }
+
+        .footer-note a:hover {
+            border-bottom-color: #28655d;
+        }
+
+        .footer-note small {
+            display: block;
+            color: #59847c;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 600px) {
+            .page-wrap {
+                padding: 0 0.6rem 2rem;
+            }
+            .hero-card {
+                margin: 1rem -0.6rem 0;
+                padding: 2.2rem 1rem 2rem;
+                border-radius: 0 0 2rem 2rem;
+            }
+            .hero-card h1 {
+                font-size: 2rem;
+            }
+            .intro-grid {
+                gap: 1rem;
+            }
+            .scene-panel {
+                gap: 1rem;
+            }
+            .context-block {
+                padding: 1rem 1.2rem;
+            }
+            .faq-mini {
+                padding: 1.2rem;
+            }
+            .footer-note p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <!-- 首页横幅 hero -->
+    <div class="hero-card">
+        <h1>华体会</h1>
+        <div class="hero-tagline">功能 · 服务 · 场景</div>
+        <div class="hero-sub">快速了解平台用途与定位</div>
+    </div>
+
+    <!-- 背景说明 (凝练介绍网站用途) -->
+    <div class="context-block">
+        <p><strong>华体会</strong> 是一个面向日常信息获取与轻量交互的线上平台。用户可以通过它快速了解特定服务模块、查阅常见功能说明，以及辨别不同使用场景下的操作路径。本页从实际使用角度出发，归纳了平台的核心构成与典型用途，帮助初次接触者建立整体认知。</p>
+    </div>
+
+    <!-- 三段自然介绍 (网格卡片) -->
+    <div class="intro-grid">
+        <div class="intro-card">
+            <h3><span></span> 服务概览</h3>
+            <p>平台围绕信息展示与基础操作展开，涵盖分类导航、内容索引以及功能入口。使用者无需过多学习成本，即可找到对应模块。</p>
+            <span class="badge">轻量 · 清晰</span>
+        </div>
+        <div class="intro-card">
+            <h3><span></span> 常用场景</h3>
+            <p>日常查询、规则对照、功能确认。无论通过手机还是桌面设备，均可顺畅浏览核心信息，减少反复切换的成本。</p>
+            <span class="badge">多端适应</span>
+        </div>
+        <div class="intro-card">
+            <h3><span></span> 设计思路</h3>
+            <p>界面以内容优先，减少无关干扰。通过分区卡片与清晰层级，让用户能快速定位自己关心的部分，提升获取效率。</p>
+            <span class="badge">内容优先</span>
+        </div>
+    </div>
+
+    <!-- 场景速览 (卡片补充) -->
+    <div class="scene-panel">
+        <div class="scene-item">
+            <h4>新用户</h4>
+            <p>了解平台定位，快速确认各模块对应什么服务，减少摸索时间。</p>
+        </div>
+        <div class="scene-item">
+            <h4>常规使用</h4>
+            <p>每日信息查阅、功能入口、状态确认，页面结构稳定，便于记忆。</p>
+        </div>
+        <div class="scene-item">
+            <h4>对比判断</h4>
+            <p>当需要确认某项内容是否与自身需求匹配，可逐项对照说明。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 (只列常见问题，冷静风格) -->
+    <div class="faq-mini">
+        <h3>常见问题摘要</h3>
+        <ul>
+            <li><b>Q：</b> 这个平台主要提供什么？ <span style="color:#2d615b;">A：信息展示、模块导航与基本功能入口，方便使用者快速识别用途。</span></li>
+            <li><b>Q：</b> 是否需要注册？ <span style="color:#2d615b;">A：根据具体模块而定，部分内容可直接浏览，部分功能可能需要简单登录。</span></li>
+            <li><b>Q：</b> 移动端效果如何？ <span style="color:#2d615b;">A：页面针对手机与平板做了适配，卡片布局可自适应屏幕宽度。</span></li>
+            <li><b>Q：</b> 信息更新频率？ <span style="color:#2d615b;">A：依据实际业务调整，建议定期浏览以获取最新功能说明。</span></li>
+        </ul>
+    </div>
+
+    <!-- 页尾访问提示 (链接嵌入句子) -->
+    <div class="footer-note">
+        <p>若需进一步了解平台完整服务，可直接访问 <a href="https://official-cns-huatihui.com">华体会</a> 官方网站，查看详细模块介绍与最新动态。</p>
+        <small>本页为功能说明概览 · 内容仅供参考</small>
+    </div>
+</div>
+</body>
+</html>
