@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>赏金女王 · 日常探索志</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f7fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .wrapper {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 1.5rem 1.2rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* hero 横幅 */
+        .hero {
+            background: linear-gradient(145deg, #0b3b3b 0%, #1f5f5f 100%);
+            border-radius: 2.5rem 2.5rem 2rem 2rem;
+            padding: 3.2rem 2rem 2.8rem;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 20px 30px -12px rgba(5, 70, 70, 0.25);
+            color: #e2f0f0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "✦";
+            font-size: 12rem;
+            color: rgba(44, 160, 150, 0.08);
+            position: absolute;
+            right: -1rem;
+            top: -3rem;
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 0.3rem;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .hero .sub {
+            font-size: 1rem;
+            border-top: 1px solid rgba(220, 255, 245, 0.2);
+            display: inline-block;
+            padding-top: 0.6rem;
+            margin-top: 0.2rem;
+            color: #b4dbd0;
+            letter-spacing: 1px;
+        }
+
+        /* 卡片网格 – 杂志式三段 */
+        .magazine-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.8rem;
+            margin-bottom: 2.8rem;
+        }
+        @media (min-width: 640px) {
+            .magazine-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (min-width: 900px) {
+            .magazine-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+        .card {
+            background: white;
+            border-radius: 1.8rem;
+            padding: 1.8rem 1.5rem 2rem;
+            box-shadow: 0 6px 16px rgba(0, 40, 40, 0.05);
+            border: 1px solid #d9eae7;
+            transition: transform 0.2s, box-shadow 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 24px -8px rgba(20, 80, 70, 0.12);
+            border-color: #97c8be;
+        }
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 550;
+            color: #0b4d4a;
+            margin-bottom: 0.75rem;
+            border-left: 5px solid #2a9d8f;
+            padding-left: 0.8rem;
+        }
+        .card p {
+            font-size: 0.96rem;
+            color: #2d3f3f;
+            margin-bottom: 0.9rem;
+            flex: 1;
+        }
+        .card .meta-tag {
+            display: inline-block;
+            background: #e6f3f0;
+            color: #11635b;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            margin-top: 0.3rem;
+            align-self: flex-start;
+        }
+
+        /* 背景说明区 – 日常对照 */
+        .context-block {
+            background: #edf7f5;
+            border-radius: 2rem;
+            padding: 2rem 1.8rem;
+            margin: 2rem 0 2.5rem;
+            border-left: 6px solid #2a9d8f;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+        }
+        .context-block h3 {
+            font-size: 1.2rem;
+            font-weight: 550;
+            color: #144d47;
+            margin-bottom: 0.6rem;
+        }
+        .context-block p {
+            color: #1f4140;
+            font-size: 0.95rem;
+            max-width: 680px;
+        }
+
+        /* 页尾访问提示 */
+        .footer-prompt {
+            margin-top: 2rem;
+            padding: 1.6rem 1.2rem;
+            text-align: center;
+            background: white;
+            border-radius: 2rem;
+            border: 1px solid #cbdcd6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .footer-prompt p {
+            font-size: 0.95rem;
+            color: #2b4946;
+            max-width: 500px;
+        }
+        .footer-prompt a {
+            color: #11635b;
+            background: #dcf0ec;
+            padding: 0.6rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 540;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            border: 1px solid transparent;
+        }
+        .footer-prompt a:hover {
+            background: #2a9d8f;
+            color: white;
+            border-color: #1f7a6e;
+        }
+
+        /* 小字 & 点缀 */
+        .fine-print {
+            margin-top: 2.2rem;
+            font-size: 0.75rem;
+            color: #7b9893;
+            text-align: center;
+            border-top: 1px dashed #bed6cf;
+            padding-top: 1.2rem;
+        }
+        .faq-mini {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            margin: 1.2rem 0 0.5rem;
+            justify-content: center;
+            color: #30635b;
+            font-size: 0.85rem;
+        }
+        .faq-mini span {
+            background: #e1f1ed;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 460px) {
+            .hero { padding: 2.2rem 1rem 2rem; }
+            .hero h1 { font-size: 2rem; }
+            .card { padding: 1.5rem 1.2rem; }
+            .context-block { padding: 1.5rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- 首页横幅 hero -->
+    <header class="hero">
+        <h1>赏金女王</h1>
+        <div class="sub">日常查询 · 对照 · 延伸阅读</div>
+    </header>
+
+    <!-- 三段杂志卡片：自然介绍 -->
+    <section class="magazine-grid">
+        <div class="card">
+            <h2>日常查询</h2>
+            <p>在信息碎片里找一个可靠的参考点。<br>很多朋友习惯把「赏金女王」当作日常检索的锚——素材出处、版本差异、常见搭配，随手一查，比翻论坛更省力。</p>
+            <span class="meta-tag">快捷参考</span>
+        </div>
+        <div class="card">
+            <h2>对照脉络</h2>
+            <p>同一件事在不同界面里呈现的样子可能截然不同。<br>对照玩法、界面描述、功能变化…… 把零散信息并排比对，更容易看清轮廓。</p>
+            <span class="meta-tag">并排比对</span>
+        </div>
+        <div class="card">
+            <h2>延伸阅读</h2>
+            <p>从一个名字延伸到周边话题：背景设定、玩家笔记、社区讨论。不追求权威，但求拓宽视野，像翻一本旧杂志那样自然。</p>
+            <span class="meta-tag">拓宽视野</span>
+        </div>
+    </section>
+
+    <!-- 背景说明 + 日常切入角度 -->
+    <div class="context-block">
+        <h3>为什么需要一本“日常对照”</h3>
+        <p>很多时候我们并不需要一个完整的教程，只是想确认某个说法对不对，或者看看别人怎么描述同一个东西。从日常查询、对照和延伸阅读的角度出发，<a href="https://portal-web-bountyqueen.com" style="color:#0f6b60; text-decoration:underline; text-underline-offset:3px;">赏金女王</a> 整理出的内容更像一份随手翻的笔记——不堆砌术语，不制造焦虑，只是把散落的信息收拢成卡片，方便你快速扫一眼。</p>
+        <p style="margin-top: 0.7rem;">无论是想确认一个细节，还是纯粹出于好奇想多了解一点，这种轻量的翻阅习惯往往比系统学习更贴近日常。页面采用网格卡片结构，就是希望每个模块都像一张独立便签，随取随放。</p>
+    </div>
+
+    <!-- 页尾访问提示 + FAQ 摘要 -->
+    <div class="footer-prompt">
+        <p>如果你也在寻找一个安静的信息参照点，可以随时翻阅 <a href="https://portal-web-bountyqueen.com">赏金女王</a> 的整理内容。没有复杂的导航，只有卡片式的段落，适合碎片时间随手对照。</p>
+        <div class="faq-mini">
+            <span>❓ 如何快速定位？</span>
+            <span>📋 卡片按话题分类</span>
+            <span>🔍 关键词可检索</span>
+        </div>
+        <div style="font-size:0.8rem; color:#58827a; margin-top: 0.3rem;">
+            * 日常阅读 · 无广告干扰
+        </div>
+    </div>
+
+    <!-- 极简装饰性脚注 -->
+    <div class="fine-print">
+        <span>杂志专题 · 日常查询 / 对照 / 延伸</span>
+        <span style="margin-left: 1rem; opacity: 0.5;">✦</span>
+    </div>
+
+</div>
+</body>
+</html>
